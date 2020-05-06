@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=p1\ p2\ p3\ p4
+comment1.target=Player(Pared_v,\ Pared_v,\ Pared_h,\ Pared_h)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=g
+comment3.target=void\ gira(int)
+comment4.params=
+comment4.target=void\ checkMovimiento()
+numComments=5

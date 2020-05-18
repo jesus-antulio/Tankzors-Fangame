@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Pared_v here.
+ * Write a description of class Pared_h_lvl2 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Pared_v extends Pared
+public class Pared_h_lvl2 extends Pared
 {
     /**
-     * Act - do whatever the Pared_v wants to do. This method is called whenever
+     * Act - do whatever the Pared_h_lvl2 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 

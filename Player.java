@@ -15,10 +15,6 @@ public class Player extends Actor
     private Pared_v p2;
     private Pared_h p3;
     private Pared_h p4;
-    private Pared_v_lvl2 p1_lvl2;
-    private Pared_v_lvl2 p2_lvl2;
-    private Pared_h_lvl2 p3_lvl2;
-    private Pared_h_lvl2 p4_lvl2;
     
     public Player (Pared_v p1, Pared_v p2, Pared_h p3, Pared_h p4, int enemigos){
         this.p1 = p1;
@@ -28,45 +24,15 @@ public class Player extends Actor
         this.enemigos = enemigos;
     }
     
-    public Player (Pared_v_lvl2 p1_lvl2, Pared_v_lvl2 p2_lvl2, Pared_h_lvl2 p3_lvl2, Pared_h_lvl2 p4_lvl2, int enemigos){
-        this.p1_lvl2 = p1_lvl2;
-        this.p2_lvl2 = p2_lvl2;
-        this.p3_lvl2 = p3_lvl2;
-        this.p4_lvl2 = p4_lvl2;
-        this.enemigos = enemigos;
-    }
-    
     public void act() 
-    {
-        //Variable que ayuda a determinar que pantalla debe aparecer
-        int opc = 0;
-        
+    {   
         if(Greenfoot.isKeyDown("enter")){
             Greenfoot.setWorld(new Level2());
         }
-        
-        if(enemigos == 0){
-            switch(opc){
-                //Si pasa el primer nivel
-                case 0: Greenfoot.setWorld(new Level2());
-                        break;
-                //Si pasa el segundo nivel
-                case 1: Greenfoot.setWorld(new FinalScreen());
-                        break;
-                //Si el jugador muere
-                case 3: Greenfoot.setWorld(new DeadScreen());
-                        break;
-            }
-        }
-        
-        checkMovimiento();
+        setDirection();
     }
-    
-    public void gira(int g){
-        turn(g);
-    }
-    
-    public void checkMovimiento(){
+        
+    public void setDirection(){
         int x = getX();
         int y = getY();
         
@@ -104,12 +70,11 @@ public class Player extends Actor
         }
     }
     
-    /*public void setDireccion(int dir){
-        switch (dir){
-            case UP:
-            case DOWN:
-            case LEFT:
-            case RIGHT:
-        }
-    }*/
+    public void gira(int g){
+        turn(g);
+    }
+    
+    public int getEnemigos(){
+        return enemigos;
+    }
 }

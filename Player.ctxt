@@ -2,12 +2,12 @@
 comment0.target=Player
 comment1.params=p1\ p2\ p3\ p4\ enemigos
 comment1.target=Player(Pared_v,\ Pared_v,\ Pared_h,\ Pared_h,\ int)
-comment2.params=p1_lvl2\ p2_lvl2\ p3_lvl2\ p4_lvl2\ enemigos
-comment2.target=Player(Pared_v_lvl2,\ Pared_v_lvl2,\ Pared_h_lvl2,\ Pared_h_lvl2,\ int)
+comment2.params=
+comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ act()
+comment3.target=void\ setDirection()
 comment4.params=g
 comment4.target=void\ gira(int)
 comment5.params=
-comment5.target=void\ checkMovimiento()
+comment5.target=int\ getEnemigos()
 numComments=6

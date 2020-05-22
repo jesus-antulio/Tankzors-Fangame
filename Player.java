@@ -55,7 +55,7 @@ public class Player extends Actor
         if(Greenfoot.isKeyDown("left")){
             setRotation(270);
             if (intersects(p1) || intersects(p2) || intersects(p3) || intersects(p4)){
-                setLocation(x+=5, y);
+                setLocation(90, y);
             } else {
                 setLocation(x-(xDirection*vel), y);
             }

@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=Player
-comment1.params=p1\ p2\ p3\ p4\ enemigos
-comment1.target=Player(Pared_v,\ Pared_v,\ Pared_h,\ Pared_h,\ int)
+comment1.params=
+comment1.target=Player()
 comment2.params=
-comment2.target=void\ act()
+comment2.target=Player\ getInstance()
 comment3.params=
-comment3.target=void\ setDirection()
-comment4.params=g
-comment4.target=void\ gira(int)
-comment5.params=
-comment5.target=int\ getEnemigos()
+comment3.target=void\ act()
+comment4.params=x\ y
+comment4.target=void\ move(int,\ int)
+comment5.params=x\ y
+comment5.target=void\ getKey(int,\ int)
 numComments=6

@@ -27,14 +27,15 @@ public class StartMenu extends World
     {
         Title title = new Title();
         addObject(title,450,300);
-        Tanque tanque = new Tanque();
-        addObject(tanque,783,483);
-        
+        Tank tank1 = new Tank("spr_Tank_0_startMenu.png");
+        addObject(tank1,783,483);
+        Tank tank2 = new Tank("spr_SPTank_0_startMenu.png");
+        addObject(tank2,120,483);
     }
     
     public void act(){
         if(Greenfoot.isKeyDown("enter")){
-            Greenfoot.setWorld(new TestWorld());
+            Greenfoot.setWorld(new Level1());
         }
        
     }

@@ -25,18 +25,22 @@ public class Player extends Actor{
     
     public void move(int x, int y){
         if(goY < 0){
+            setRotation(0);
             setLocation(x, y - movement);
             goY += movement;
         }
         else if(goY > 0){
+            setRotation(180);
             setLocation(x, y + movement);
             goY -= movement;
         }
         if(goX < 0){
+            setRotation(270);
             setLocation(x - movement, y);
             goX += movement;
         }
         else if(goX > 0){
+            setRotation(90);
             setLocation(x + movement, y);
             goX -= movement;
         }

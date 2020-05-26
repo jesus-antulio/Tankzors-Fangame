@@ -1,10 +1,11 @@
 #BlueJ class context
 comment0.target=Level1
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Level1\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=Level1()
 comment2.params=
 comment2.target=void\ prepare()
-comment3.params=player
-comment3.target=void\ act(Player)
-numComments=4
+comment3.params=obstacle\ base
+comment3.target=Base\ loadMap(java.util.List,\ java.util.List)
+comment4.params=obstacle\ base
+comment4.target=void\ drawMap(java.util.List,\ java.util.List)
+numComments=5

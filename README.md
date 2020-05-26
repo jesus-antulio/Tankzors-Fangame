@@ -11,3 +11,5 @@ Se debe de matar a todos los enemigos para poder superar el nivel.
 El juego es de un jugador
 ## ¿Cómo se juega?
 Para moverse, se utilizan las teclas de las flechas.
+## Diagrama de Clases
+![Diagrama de Clases](https://raw.github.com/jesus-antulio/Tankzors-Fangame/blob/master/images/Diagrama%20de%20Clases.png)

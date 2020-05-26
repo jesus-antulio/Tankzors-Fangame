@@ -2,12 +2,4 @@
 comment0.target=Level1
 comment1.params=
 comment1.target=Level1()
-comment2.params=
-comment2.target=void\ prepare()
-comment3.params=obstacle\ base
-comment3.target=Base\ loadMap(java.util.List,\ java.util.List)
-comment4.params=obstacle\ base
-comment4.target=void\ drawMap(java.util.List,\ java.util.List)
-comment5.params=
-comment5.target=void\ act()
-numComments=6
+numComments=2

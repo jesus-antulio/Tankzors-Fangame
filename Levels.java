@@ -1,18 +1,26 @@
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 import java.util.*;
 
-public class Level1 extends Levels{
-    
-    public Level1(){    
-        super("map_Level1.txt", "maps/map_Level1.txt");
+/**
+ * Write a description of class Levels here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Levels extends World
+{
+
+    public Levels(String map, String map2){    
+        super(1280, 736, 1);
+        prepare(map, map2);
     }
     
-    /*private void prepare(){
-        File f = new File("map_Level1.txt");
+    private void prepare(String map, String map2){
+        File f = new File(map);
         List <Obstacle> obstacle = new LinkedList<>();
         List <Base> base = new LinkedList<>();
-        Base pBase = loadMap(obstacle, base);
+        Base pBase = loadMap(obstacle, base, map2);
         Player player = Player.getInstance();
         drawMap(obstacle, base);
         addObject(player,pBase.getX(),pBase.getY());
@@ -20,11 +28,11 @@ public class Level1 extends Levels{
         addObject(message,1200,42);
     }
     
-    private Base loadMap(List<Obstacle> obstacle, List <Base> base){
+    private Base loadMap(List<Obstacle> obstacle, List <Base> base, String map2){
         int basePosition = 0;
         try {
             int pared;
-            FileReader fr = new FileReader("maps/map_Level1.txt");
+            FileReader fr = new FileReader(map2);
             BufferedReader br = new BufferedReader(fr);
             for (int i = 0; i < 23; i++) {
                 for (int j = 0; j < 35; j++) {
@@ -83,6 +91,8 @@ public class Level1 extends Levels{
     public void act(){
         if(Greenfoot.isKeyDown("e")){
             Greenfoot.setWorld(new ExitScreen());
+        } else if(Greenfoot.isKeyDown("2")){
+            Greenfoot.setWorld(new Level2());
         }
-    }*/
+    }
 }

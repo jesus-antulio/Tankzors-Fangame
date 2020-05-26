@@ -91,8 +91,14 @@ public class Levels extends World
     public void act(){
         if(Greenfoot.isKeyDown("e")){
             Greenfoot.setWorld(new ExitScreen());
+        } else if(Greenfoot.isKeyDown("1")){
+            Greenfoot.setWorld(new Level1());
         } else if(Greenfoot.isKeyDown("2")){
             Greenfoot.setWorld(new Level2());
+        } else if(Greenfoot.isKeyDown("3")){
+            Greenfoot.setWorld(new Level3());
+        } else if(Greenfoot.isKeyDown("0")){
+            Greenfoot.setWorld(new DeadScreen());
         }
     }
 }

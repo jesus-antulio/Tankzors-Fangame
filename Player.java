@@ -1,4 +1,6 @@
 import greenfoot.*;
+import java.io.*;
+import java.util.*;
 
 public class Player extends Actor{
     private static Player player = null;
@@ -26,23 +28,43 @@ public class Player extends Actor{
     public void move(int x, int y){
         if(goY < 0){
             setRotation(0);
-            setLocation(x, y - movement);
-            goY += movement;
+            if(isTouching(Obstacle.class)){
+                setLocation(x, y + movement);
+                goY=0;
+            }else{
+                setLocation(x, y - movement);
+                goY += movement;
+            }
         }
         else if(goY > 0){
             setRotation(180);
-            setLocation(x, y + movement);
-            goY -= movement;
+            if(isTouching(Obstacle.class)){
+                setLocation(x, y - movement);
+                goY=0;
+            }else{
+                setLocation(x, y + movement);
+                goY -= movement;
+            }
         }
         if(goX < 0){
             setRotation(270);
-            setLocation(x - movement, y);
-            goX += movement;
+            if(isTouching(Obstacle.class)){
+                setLocation(x + movement, y);
+                goX=0;
+            }else{
+                setLocation(x - movement, y);
+                goX += movement;
+            }
         }
         else if(goX > 0){
             setRotation(90);
-            setLocation(x + movement, y);
-            goX -= movement;
+            if(isTouching(Obstacle.class)){
+                setLocation(x - movement, y);
+                goX=0;
+            }else{
+                setLocation(x + movement, y);
+                goX -= movement;
+            }
         }
     }
     

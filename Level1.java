@@ -17,6 +17,8 @@ public class Level1 extends World{
         Player player = Player.getInstance();
         drawMap(obstacle, base);
         addObject(player,pBase.getX(),pBase.getY());
+        Message message = new Message("message_Exit.png");
+        addObject(message,1200,42);
     }
     
     private Base loadMap(List<Obstacle> obstacle, List <Base> base){
@@ -76,6 +78,12 @@ public class Level1 extends World{
         for(int i=0; i<base.size();i++){
             hq = base.get(i);
             addObject(hq,hq.getX(),hq.getY());
+        }
+    }
+    
+    public void act(){
+        if(Greenfoot.isKeyDown("e")){
+            Greenfoot.setWorld(new ExitScreen());
         }
     }
 }

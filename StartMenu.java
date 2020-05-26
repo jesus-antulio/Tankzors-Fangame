@@ -25,7 +25,7 @@ public class StartMenu extends World
      */
     private void prepare()
     {
-        Title title = new Title();
+        Message title = new Message("title.png");
         addObject(title,450,300);
         Tank tank1 = new Tank("spr_Tank_0_startMenu.png");
         addObject(tank1,783,483);
@@ -36,7 +36,6 @@ public class StartMenu extends World
     public void act(){
         if(Greenfoot.isKeyDown("enter")){
             Greenfoot.setWorld(new Level1());
-        }
-       
+        }       
     }
 }

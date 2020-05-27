@@ -35,7 +35,7 @@ public class StartMenu extends World
     }
     
     public void act(){
-        if(Greenfoot.isKeyDown("enter")){
+        if(Greenfoot.isKeyDown("space")){
             Greenfoot.setWorld(new Level1());
         }       
     }

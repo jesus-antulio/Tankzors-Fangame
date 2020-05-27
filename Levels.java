@@ -97,8 +97,6 @@ public class Levels extends World
             Greenfoot.setWorld(new Level2());
         } else if(Greenfoot.isKeyDown("3")){
             Greenfoot.setWorld(new Level3());
-        } else if(Greenfoot.isKeyDown("0")){
-            Greenfoot.setWorld(new DeadScreen());
         }
     }
 }

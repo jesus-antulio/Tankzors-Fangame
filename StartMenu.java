@@ -27,9 +27,10 @@ public class StartMenu extends World
     {
         Message title = new Message("title.png");
         addObject(title,450,300);
-        Tank tank1 = new Tank("spr_Tank_0_startMenu.png");
+        
+        Tank tank1 = new Tank("spr_Tank_0_startMenu.png", 0);
         addObject(tank1,783,483);
-        Tank tank2 = new Tank("spr_SPTank_0_startMenu.png");
+        Tank tank2 = new Tank("spr_SPTank_0_startMenu.png", 0);
         addObject(tank2,120,483);
     }
     

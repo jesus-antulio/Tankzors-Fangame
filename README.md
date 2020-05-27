@@ -12,4 +12,4 @@ El juego es de un jugador
 ## ¿Cómo se juega?
 Para moverse, se utilizan las teclas de las flechas.
 ## Diagrama de Clases
-![Diagrama de Clases](https://raw.github.com/jesus-antulio/Tankzors-Fangame/blob/master/images/Diagrama%20de%20Clases.png)
+![Diagrama de Clases](https://rawr.github.com/jesus-antulio/Tankzors-Fangame/blob/master/images/DiagramaDeClases.png)

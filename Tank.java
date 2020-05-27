@@ -11,9 +11,4 @@ public class Tank extends Actor
     public Tank(String spr){
         setImage(spr);
     }
-    
-    public void act() 
-    {
-        // Add your action code here.
-    }    
 }

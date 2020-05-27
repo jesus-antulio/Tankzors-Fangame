@@ -11,6 +11,4 @@ public class Message extends Actor
     public Message(String message) {
         setImage(message);
     }
-    
-    public void act(){}
 }

@@ -10,6 +10,6 @@ public class Level2 extends Levels
 {
     public Level2()
     {
-        super("map_Level2.txt", "maps/map_Level2.txt");
+        super("map_Level2.txt", "maps/map_Level2.txt", 20);
     }
 }

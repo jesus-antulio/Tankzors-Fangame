@@ -1,34 +1,37 @@
 import greenfoot.*;
-import java.io.*;
-import java.util.*;
-
-public class Player extends Actor{
-    private static Player player = null;
-    private static final int movement = 2;
-    private static int goX = 0;
-    private static int goY = 0;
+import java.util.Random;
+        
+public class Enemy extends Actor{
+    private static Random rng = new Random();
+    private int movement;
+    private int type;
+    private int goX;
+    private int goY;
     
-    private Player(){
-        setImage("spr_Tank_0.png");
+    public Enemy(int type){
+        this.type = type;
+        if(type == 2){
+            setImage("spr_TGTSPTank.png");
+            movement = 1;
+        }
+        else{
+            setImage("spr_TGTTank.png");
+            movement = 2;
+        }
     }
-    
-    public static Player getInstance(){
-        if(player == null) player = new Player();
-        return player;
-    }
-    
+            
     public void act(){
         int x = getX();
         int y = getY();
         
         if(goX != 0 || goY != 0) move(x,y);
-        else getKey(x,y);
+        else getDirection(x,y);
     }
-    
+            
     public void move(int x, int y){
         if(goY < 0){
             setRotation(0);
-            if(isTouching(Obstacle.class) || isTouching(TGTBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
                 setLocation(x, y + movement);
                 goY=0;
             }else{
@@ -38,7 +41,7 @@ public class Player extends Actor{
         }
         else if(goY > 0){
             setRotation(180);
-            if(isTouching(Obstacle.class) || isTouching(TGTBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
                 setLocation(x, y - movement);
                 goY=0;
             }else{
@@ -48,7 +51,7 @@ public class Player extends Actor{
         }
         if(goX < 0){
             setRotation(270);
-            if(isTouching(Obstacle.class) || isTouching(TGTBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
                 setLocation(x + movement, y);
                 goX=0;
             }else{
@@ -58,7 +61,7 @@ public class Player extends Actor{
         }
         else if(goX > 0){
             setRotation(90);
-            if(isTouching(Obstacle.class) || isTouching(TGTBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
                 setLocation(x - movement, y);
                 goX=0;
             }else{
@@ -68,18 +71,20 @@ public class Player extends Actor{
         }
     }
     
-    public void getKey(int x, int y){
-        if(Greenfoot.isKeyDown("w")){
-            goY -= 32;
-        }
-        else if(Greenfoot.isKeyDown("s")){
-            goY += 32;
-        }
-        else if(Greenfoot.isKeyDown("a")){
-            goX -= 32;
-        }
-        else if(Greenfoot.isKeyDown("d")){
-            goX += 32;
+    public void getDirection(int x, int y){
+        switch(rng.nextInt(4)){
+            case 0:
+                goY -= 32;
+                break;
+            case 1:
+                goY += 32;
+                break;
+            case 2:
+                goX -= 32;
+                break;
+            case 3:
+                goX += 32;
+                break;
         }
     }
 }

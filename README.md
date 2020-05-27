@@ -13,3 +13,8 @@ El juego es de un jugador
 Para moverse, se utilizan las teclas de las flechas.
 ## Diagrama de Clases
 ![Diagrama de Clases](images/DiagramaDeClases.png)
+## Enlaces
+### Greenfoot
+https://www.greenfoot.org/scenarios/25936
+### Youtube
+https://youtu.be/s1UkhAqw_tg

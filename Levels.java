@@ -10,16 +10,25 @@ import java.util.*;
  */
 public class Levels extends World
 {
-
-    public Levels(String map, String map2){    
+    private Random rng = new Random();
+    private int internalTime = 0;
+    private List <Base> base;
+    private List <Obstacle> obstacle;
+    private List <Enemy> enemy;
+    private int noEnemys;
+    private int enemysOnScreen = 0;
+    
+    public Levels(String map, String map2, int noEnemys){    
         super(1280, 736, 1);
         prepare(map, map2);
+        this.noEnemys = noEnemys;
     }
     
     private void prepare(String map, String map2){
         File f = new File(map);
-        List <Obstacle> obstacle = new LinkedList<>();
-        List <Base> base = new LinkedList<>();
+        obstacle = new LinkedList<>();
+        base = new LinkedList<>();
+        enemy = new LinkedList<>();
         Base pBase = loadMap(obstacle, base, map2);
         Player player = Player.getInstance();
         drawMap(obstacle, base);
@@ -99,6 +108,15 @@ public class Levels extends World
             Greenfoot.setWorld(new Level3());
         } else if(Greenfoot.isKeyDown("0")){
             Greenfoot.setWorld(new DeadScreen());
+        }
+        Base eBase = base.get(rng.nextInt(base.size()-1)+1);
+        if(noEnemys > 0 && internalTime < 500) internalTime++;
+        if(internalTime == 500 && noEnemys > 0 && enemysOnScreen < 5){
+            enemy.add(new Enemy(rng.nextInt(2)+1));
+            addObject(enemy.get(enemysOnScreen),eBase.getX(),eBase.getY());
+            enemysOnScreen++;
+            noEnemys--;
+            internalTime = 0;
         }
     }
 }

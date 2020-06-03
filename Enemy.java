@@ -92,6 +92,10 @@ public class Enemy extends Actor{
     public void removeEnemy(){
         if (isTouching(Projectile.class)){
             getWorld().removeObject(this);
+            
+            World world = getWorld();
+            Levels level = (Levels)world;
+            level.enemysDied++;
         }
     }
 }

@@ -16,13 +16,15 @@ public class Levels extends World
     private List <Obstacle> obstacle;
     private List <Enemy> enemy;
     private int noEnemys;
+    private int band;
     private int enemysOnScreen = 0;
-    public int enemysDied = 0;
+    public static int enemysDied = 0;
     
     public Levels(String map, String map2, int noEnemys){    
         super(1280, 736, 1);
         prepare(map, map2);
         this.noEnemys = noEnemys;
+        band=noEnemys;
     }
     
     private void prepare(String map, String map2){
@@ -103,15 +105,14 @@ public class Levels extends World
     }
     
     public void act(){
-        if(Greenfoot.isKeyDown("e")){
+        if(Greenfoot.isKeyDown("e") || enemysDied == 15 && band == 99){
             Greenfoot.setWorld(new ExitScreen());
-        } else if(Greenfoot.isKeyDown("1")){
-            Greenfoot.setWorld(new Level1());
-        } else if(Greenfoot.isKeyDown("2") || enemysDied == 5){
+        } else if(enemysDied == 5 && band == 15){
             Greenfoot.setWorld(new Level2());
-        } else if(Greenfoot.isKeyDown("3")){
+        } else if(enemysDied == 10 && band == 20){
             Greenfoot.setWorld(new Level3());
-        }
+        } 
+        
         Base eBase = base.get(rng.nextInt(base.size()-1)+1);
         if(noEnemys > 0 && internalTime < 500) internalTime++;
         if(internalTime == 500 && noEnemys > 0 && enemysOnScreen < 5){

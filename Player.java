@@ -7,6 +7,7 @@ public class Player extends Actor{
     private static final int movement = 2;
     private static int goX = 0;
     private static int goY = 0;
+    private boolean canFire = true;
     
     private Player(){
         setImage("spr_Tank_0.png");
@@ -87,20 +88,32 @@ public class Player extends Actor{
     
     public void fireProjectile(){
         if(getRotation()==0){
-            if(Greenfoot.isKeyDown("space")){
+            if(Greenfoot.isKeyDown("space") && canFire == true){
                 getWorld().addObject(new Projectile(0), getX(), getY()-10);
+                canFire = false;
+            } else if (!Greenfoot.isKeyDown("space")) {
+                canFire = true;
             }
         } else if(getRotation()==180){
-            if(Greenfoot.isKeyDown("space")){
+            if(Greenfoot.isKeyDown("space") && canFire == true){
                 getWorld().addObject(new Projectile(180), getX(), getY()+10);
+                canFire = false;
+            } else if (!Greenfoot.isKeyDown("space")) {
+                canFire = true;
             }
         } else if(getRotation()==270){
-            if(Greenfoot.isKeyDown("space")){
+            if(Greenfoot.isKeyDown("space") && canFire == true){
                 getWorld().addObject(new Projectile(270), getX()-10, getY());
+                canFire = false;
+            } else if (!Greenfoot.isKeyDown("space")) {
+                canFire = true;
             }
         } else if(getRotation()==90){
-            if(Greenfoot.isKeyDown("space")){
+            if(Greenfoot.isKeyDown("space") && canFire == true){
                 getWorld().addObject(new Projectile(90), getX()+10, getY());
+                canFire = false;
+            } else if (!Greenfoot.isKeyDown("space")) {
+                canFire = true;
             }
         }
     }

@@ -17,6 +17,7 @@ public class Levels extends World
     private List <Enemy> enemy;
     private int noEnemys;
     private int enemysOnScreen = 0;
+    public int enemysDied = 0;
     
     public Levels(String map, String map2, int noEnemys){    
         super(1280, 736, 1);
@@ -97,12 +98,16 @@ public class Levels extends World
         }
     }
     
+    public void setEnemysDied(){
+        enemysDied++;
+    }
+    
     public void act(){
         if(Greenfoot.isKeyDown("e")){
             Greenfoot.setWorld(new ExitScreen());
         } else if(Greenfoot.isKeyDown("1")){
             Greenfoot.setWorld(new Level1());
-        } else if(Greenfoot.isKeyDown("2")){
+        } else if(Greenfoot.isKeyDown("2") || enemysDied == 5){
             Greenfoot.setWorld(new Level2());
         } else if(Greenfoot.isKeyDown("3")){
             Greenfoot.setWorld(new Level3());

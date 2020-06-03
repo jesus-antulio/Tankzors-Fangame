@@ -8,11 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level3 extends Levels
 {
-
-    /**
-     * Constructor for objects of class Level3.
-     * 
-     */
     public Level3()
     {
         super("map_Level3.txt", "maps/map_Level3.txt", 99);

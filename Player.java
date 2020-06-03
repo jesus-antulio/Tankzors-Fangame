@@ -23,6 +23,8 @@ public class Player extends Actor{
         
         if(goX != 0 || goY != 0) move(x,y);
         else getKey(x,y);
+        
+        fireProjectile();
     }
     
     public void move(int x, int y){
@@ -80,6 +82,26 @@ public class Player extends Actor{
         }
         else if(Greenfoot.isKeyDown("d")){
             goX += 32;
+        }
+    }
+    
+    public void fireProjectile(){
+        if(getRotation()==0){
+            if(Greenfoot.isKeyDown("space")){
+                getWorld().addObject(new Projectile(0), getX(), getY()-10);
+            }
+        } else if(getRotation()==180){
+            if(Greenfoot.isKeyDown("space")){
+                getWorld().addObject(new Projectile(180), getX(), getY()+10);
+            }
+        } else if(getRotation()==270){
+            if(Greenfoot.isKeyDown("space")){
+                getWorld().addObject(new Projectile(270), getX()-10, getY());
+            }
+        } else if(getRotation()==90){
+            if(Greenfoot.isKeyDown("space")){
+                getWorld().addObject(new Projectile(90), getX()+10, getY());
+            }
         }
     }
 }

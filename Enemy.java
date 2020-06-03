@@ -26,6 +26,7 @@ public class Enemy extends Actor{
         
         if(goX != 0 || goY != 0) move(x,y);
         else getDirection(x,y);
+        removeEnemy();
     }
             
     public void move(int x, int y){
@@ -85,6 +86,12 @@ public class Enemy extends Actor{
             case 3:
                 goX += 32;
                 break;
+        }
+    }
+        
+    public void removeEnemy(){
+        if (isTouching(Projectile.class)){
+            getWorld().removeObject(this);
         }
     }
 }

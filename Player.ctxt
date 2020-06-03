@@ -10,4 +10,6 @@ comment4.params=x\ y
 comment4.target=void\ move(int,\ int)
 comment5.params=x\ y
 comment5.target=void\ getKey(int,\ int)
-numComments=6
+comment6.params=
+comment6.target=void\ fireProjectile()
+numComments=7

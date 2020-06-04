@@ -1,50 +1,42 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 import java.io.*;
 import java.util.*;
-
-/**
- * Write a description of class Levels here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Levels extends World
-{
-    private Random rng = new Random();
-    private int internalTime = 0;
-    private List <Base> base;
-    private List <Obstacle> obstacle;
-    private List <Enemy> enemy;
-    private int noEnemys;
-    private int band;
-    private int enemysOnScreen = 0;
-    public static int enemysDied = 0;
     
-    public Levels(String map, String map2, int noEnemys){    
+public class Levels extends World{
+    private Random rng = new Random();
+    private int internalTime;
+    private List <Base> base;
+    private static List <Obstacle> obstacle;
+    private static List <Enemy> enemy;
+    private static int noEnemys;
+    private static int enemysOnScreen;
+    private static int level;
+    
+    public Levels(String map, int noEnemys, int level){
         super(1280, 736, 1);
-        prepare(map, map2);
+        prepare(map);
         this.noEnemys = noEnemys;
-        band=noEnemys;
+        this.level = level;
+        enemysOnScreen = 0;
+        internalTime = 0;
     }
     
-    private void prepare(String map, String map2){
-        File f = new File(map);
+    private void prepare(String map){
         obstacle = new LinkedList<>();
-        base = new LinkedList<>();
-        enemy = new LinkedList<>();
-        Base pBase = loadMap(obstacle, base, map2);
+        base = new ArrayList<>();
+        enemy = new ArrayList<>();
+        loadMap(obstacle, base, map);
+        Base pBase = Player.getPlayerBase();
         Player player = Player.getInstance();
         drawMap(obstacle, base);
         addObject(player,pBase.getX(),pBase.getY());
-        Message message = new Message("message_Exit.png");
-        addObject(message,1200,42);
     }
     
-    private Base loadMap(List<Obstacle> obstacle, List <Base> base, String map2){
+    private void loadMap(List<Obstacle> obstacle, List <Base> base, String map){
         int basePosition = 0;
         try {
             int pared;
-            FileReader fr = new FileReader(map2);
+            FileReader fr = new FileReader(map);
             BufferedReader br = new BufferedReader(fr);
             for (int i = 0; i < 23; i++) {
                 for (int j = 0; j < 35; j++) {
@@ -53,8 +45,7 @@ public class Levels extends World
                         case 48:
                             break;
                         case 49:
-                            basePosition=base.size();
-                            base.add(new FNDBase((j*32)+16, (i*32)+16));
+                            Player.setPlayerBase(new FNDBase((j*32)+16, (i*32)+16));
                             break;
                         case 50:
                             base.add(new TGTBase((j*32)+16, (i*32)+16));
@@ -84,7 +75,6 @@ public class Levels extends World
         } catch (IOException e) {
             System.err.println("File not found");
         }
-        return base.get(basePosition);
     }
     
     private void drawMap(List<Obstacle> obstacle, List<Base> base){
@@ -98,29 +88,42 @@ public class Levels extends World
             hq = base.get(i);
             addObject(hq,hq.getX(),hq.getY());
         }
-    }
-    
-    public void setEnemysDied(){
-        enemysDied++;
+        hq = Player.getPlayerBase();
+        addObject(hq,hq.getX(),hq.getY());
     }
     
     public void act(){
-        if(Greenfoot.isKeyDown("e") || enemysDied == 15 && band == 99){
+        if(Greenfoot.isKeyDown("e") || (noEnemys == 0 && level == 3) || (Player.getHp() <= 0 && Player.getLives() <= 0)){
             Greenfoot.setWorld(new ExitScreen());
-        } else if(enemysDied == 5 && band == 15){
+        } else if(noEnemys == 0 && level == 1){
             Greenfoot.setWorld(new Level2());
-        } else if(enemysDied == 10 && band == 20){
+        } else if(noEnemys == 0 && level == 2){
             Greenfoot.setWorld(new Level3());
-        } 
+        }
         
-        Base eBase = base.get(rng.nextInt(base.size()-1)+1);
+        Base eBase = base.get(rng.nextInt(base.size()));
         if(noEnemys > 0 && internalTime < 500) internalTime++;
-        if(internalTime == 500 && noEnemys > 0 && enemysOnScreen < 5){
+        if(internalTime == 500 && enemysOnScreen < noEnemys && enemysOnScreen < 5){
             enemy.add(new Enemy(rng.nextInt(2)+1));
             addObject(enemy.get(enemysOnScreen),eBase.getX(),eBase.getY());
             enemysOnScreen++;
-            noEnemys--;
             internalTime = 0;
         }
+        showText("Score: " + Player.getPoints(), 1200, 50);
+        showText("HP: " + Player.getHp(), 1200, 100);
+        showText("1UP: " + Player.getLives(), 1200, 150);
+        showText("Rounds: " + Player.getRounds(), 1200, 200);
+        showText("Enemys Left: " + noEnemys, 1200, 250);
+        showText("Press E to exit", 1200, 700);
+    }
+    
+    public static void removeSandbag(Obstacle bag){
+        obstacle.remove(bag);
+    }
+    
+    public static void removeEnemy(Enemy tgt){
+        enemy.remove(tgt);
+        enemysOnScreen--;
+        noEnemys--;
     }
 }

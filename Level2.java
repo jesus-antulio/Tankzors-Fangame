@@ -1,15 +1,7 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Level2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Level2 extends Levels
-{
-    public Level2()
-    {
-        super("map_Level2.txt", "maps/map_Level2.txt", 20);
+public class Level2 extends Levels{
+    public Level2(){
+        super("maps/map_Level2.txt", 20, 2);
     }
 }

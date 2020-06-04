@@ -8,11 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ExitScreen extends World
 {
-
-    /**
-     * Constructor for objects of class PauseScreen.
-     * 
-     */
     public ExitScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -40,6 +35,7 @@ public class ExitScreen extends World
     public void act(){
         if(Greenfoot.isKeyDown("enter")){
             Greenfoot.setWorld(new StartMenu());
+            Player.restartInstance();
         }  
         
     }

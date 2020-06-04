@@ -1,12 +1,16 @@
 import greenfoot.*;
-import java.util.Random;
+import java.util.*;
         
 public class Enemy extends Actor{
     private static Random rng = new Random();
     private int movement;
+    private int direction;
     private int type;
+    private int hp;
     private int goX;
     private int goY;
+    private static List<TGTShot> shots = new ArrayList<>();
+    private int enemyTime = 0;
     
     public Enemy(int type){
         this.type = type;
@@ -18,18 +22,23 @@ public class Enemy extends Actor{
             setImage("spr_TGTTank.png");
             movement = 2;
         }
+        hp = type;
     }
             
     public void act(){
+        enemyTime++;
         int x = getX();
         int y = getY();
         
         if(goX != 0 || goY != 0) move(x,y);
         else getDirection(x,y);
-        removeEnemy();
+        shotPlayer();
+        if(hp <= 0){
+            removeEnemy();
+        }
     }
             
-    public void move(int x, int y){
+    private void move(int x, int y){
         if(goY < 0){
             setRotation(0);
             if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
@@ -72,8 +81,9 @@ public class Enemy extends Actor{
         }
     }
     
-    public void getDirection(int x, int y){
-        switch(rng.nextInt(4)){
+    private void getDirection(int x, int y){
+        direction = rng.nextInt(4);
+        switch(direction){
             case 0:
                 goY -= 32;
                 break;
@@ -88,14 +98,46 @@ public class Enemy extends Actor{
                 break;
         }
     }
-        
-    public void removeEnemy(){
-        if (isTouching(Projectile.class)){
-            getWorld().removeObject(this);
-            
-            World world = getWorld();
-            Levels level = (Levels)world;
-            level.enemysDied++;
+    
+    private void shotPlayer(){
+        if(Player.getInstance().getX() == getX() && ((type == 1 && enemyTime > 30) || (type == 2 && enemyTime > 45))){
+            if(Player.getInstance().getY() < getY() && direction == 0){
+                shots.add(new TGTShot(type, direction));
+                getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
+                enemyTime = 0;
+            }
+            else if(Player.getInstance().getY() > getY() && direction == 1){
+                shots.add(new TGTShot(type, direction));
+                getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
+                enemyTime = 0;
+            }
         }
+        else if(Player.getInstance().getY() == getY() && ((type == 1 && enemyTime > 30) || (type == 2 && enemyTime > 45))){
+            if(Player.getInstance().getX() < getX() && direction == 2){
+                shots.add(new TGTShot(type, direction));
+                getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
+                enemyTime = 0;
+            }
+            else if(Player.getInstance().getX() > getX() && direction == 3){
+                shots.add(new TGTShot(type, direction));
+                getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
+                enemyTime = 0;
+            }
+        }
+    }
+    
+    public void hitEnemy(int dmg){
+        hp -= dmg;
+        Player.scorePoints(10);
+    }
+    
+    private void removeEnemy(){
+        Levels.removeEnemy(this);
+        getWorld().removeObject(this);
+        Player.scorePoints(50*type);
+    }
+    
+    public static void removeBullet(Bullets shot){
+        shots.remove(shot);
     }
 }

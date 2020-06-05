@@ -16,7 +16,10 @@ public class Tank extends Actor
         setImage(spr);
         this.modo = modo;
     }
-    
+
+    /**
+     *
+     */
     public void act(){
         int x = getX();
         int y = getY();
@@ -28,7 +31,6 @@ public class Tank extends Actor
                 turn(180);
                 xDirection *= -1;
             }
-        } else{
         }
     }
 }

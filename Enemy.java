@@ -9,7 +9,7 @@ public class Enemy extends Actor{
     private int hp;
     private int goX;
     private int goY;
-    private static List<TGTShot> shots = new ArrayList<>();
+    private static List<TargetShot> shots = new ArrayList<>();
     private int enemyTime = 0;
     
     public Enemy(int type){
@@ -41,7 +41,7 @@ public class Enemy extends Actor{
     private void move(int x, int y){
         if(goY < 0){
             setRotation(0);
-            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FriendBase.class)){
                 setLocation(x, y + movement);
                 goY=0;
             }else{
@@ -51,7 +51,7 @@ public class Enemy extends Actor{
         }
         else if(goY > 0){
             setRotation(180);
-            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FriendBase.class)){
                 setLocation(x, y - movement);
                 goY=0;
             }else{
@@ -61,7 +61,7 @@ public class Enemy extends Actor{
         }
         if(goX < 0){
             setRotation(270);
-            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FriendBase.class)){
                 setLocation(x + movement, y);
                 goX=0;
             }else{
@@ -71,7 +71,7 @@ public class Enemy extends Actor{
         }
         else if(goX > 0){
             setRotation(90);
-            if(isTouching(Obstacle.class) || isTouching(FNDBase.class)){
+            if(isTouching(Obstacle.class) || isTouching(FriendBase.class)){
                 setLocation(x - movement, y);
                 goX=0;
             }else{
@@ -85,16 +85,16 @@ public class Enemy extends Actor{
         direction = rng.nextInt(4);
         switch(direction){
             case 0:
-                goY -= 32;
+                goY -= TankzorsConstants.BLOCK_SIZE;
                 break;
             case 1:
-                goY += 32;
+                goY += TankzorsConstants.BLOCK_SIZE;
                 break;
             case 2:
-                goX -= 32;
+                goX -= TankzorsConstants.BLOCK_SIZE;
                 break;
             case 3:
-                goX += 32;
+                goX += TankzorsConstants.BLOCK_SIZE;
                 break;
         }
     }
@@ -102,24 +102,24 @@ public class Enemy extends Actor{
     private void shotPlayer(){
         if(Player.getInstance().getX() == getX() && ((type == 1 && enemyTime > 30) || (type == 2 && enemyTime > 45))){
             if(Player.getInstance().getY() < getY() && direction == 0){
-                shots.add(new TGTShot(type, direction));
+                shots.add(new TargetShot(type, direction));
                 getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
                 enemyTime = 0;
             }
             else if(Player.getInstance().getY() > getY() && direction == 1){
-                shots.add(new TGTShot(type, direction));
+                shots.add(new TargetShot(type, direction));
                 getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
                 enemyTime = 0;
             }
         }
         else if(Player.getInstance().getY() == getY() && ((type == 1 && enemyTime > 30) || (type == 2 && enemyTime > 45))){
             if(Player.getInstance().getX() < getX() && direction == 2){
-                shots.add(new TGTShot(type, direction));
+                shots.add(new TargetShot(type, direction));
                 getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
                 enemyTime = 0;
             }
             else if(Player.getInstance().getX() > getX() && direction == 3){
-                shots.add(new TGTShot(type, direction));
+                shots.add(new TargetShot(type, direction));
                 getWorld().addObject(shots.get(shots.size()-1),getX(),getY());
                 enemyTime = 0;
             }

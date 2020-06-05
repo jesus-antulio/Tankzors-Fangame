@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="greenfoot">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../dev/teaching/Greenfoot/lib/extensions/greenfoot.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../dev/teaching/Greenfoot/lib/extensions/submitter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,8 +1,10 @@
 import greenfoot.*;
-import java.io.*;
+
 import java.util.*;
 
 public class Player extends Actor{
+    public static final String KEY_DOWN = "w";
+    public static final String KEY_BUY_BULLETS = "r";
     private static Base pBase;
     private static Player player = null;
     private static int movement = 2;
@@ -103,27 +105,27 @@ public class Player extends Actor{
     }
     
     private void getKey(int x, int y){
-        if(Greenfoot.isKeyDown("w")){
-            goY -= 32;
+        if(Greenfoot.isKeyDown(KEY_DOWN)){
+            goY -= TankzorsConstants.BLOCK_SIZE;
             direction = 0;
         }
         else if(Greenfoot.isKeyDown("s")){
-            goY += 32;
+            goY += TankzorsConstants.BLOCK_SIZE;
             direction = 1;
         }
         else if(Greenfoot.isKeyDown("a")){
-            goX -= 32;
+            goX -= TankzorsConstants.BLOCK_SIZE;
             direction = 2;
         }
         else if(Greenfoot.isKeyDown("d")){
-            goX += 32;
+            goX += TankzorsConstants.BLOCK_SIZE;
             direction = 3;
         }
     }
     
     private void inBaseActions(){
-        if(isTouching(FNDBase.class)){
-            if(Greenfoot.isKeyDown("r") && rounds <= 90 && points >= 100 && !kbHit){
+        if(isTouching(FriendBase.class)){
+            if(Greenfoot.isKeyDown(KEY_BUY_BULLETS) && rounds <= 90 && points >= 100 && !kbHit){
                 rounds += 10;
                 points -= 100;
                 kbHit = true;

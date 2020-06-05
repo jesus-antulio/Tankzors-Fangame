@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.target=Levels
-comment1.params=map\ noEnemys\ level
+comment0.text=\r\n\ This\ class\ represents\ all\ the\ levels.\ It\ takes\ care\ of\ the\ process\ to\ load\ a\ map\r\n
+comment1.params=map\ enemiesCount\ level
 comment1.target=Levels(java.lang.String,\ int,\ int)
 comment2.params=map
 comment2.target=void\ prepare(java.lang.String)
 comment3.params=obstacle\ base\ map
 comment3.target=void\ loadMap(java.util.List,\ java.util.List,\ java.lang.String)
+comment3.text=\r\n\ Load\ a\ map\ into\ the\ current\ world\r\n\ \r\n\ @param\ obstacle\ List\ of\ obstables\ to\ be\ located\ in\ the\ map\r\n\ @param\ base\ List\ of\ bases\ to\ be\ located\ on\ the\ map\r\n\ @param\ map\ Name\ of\ the\ file\ to\ read\ the\ information\ of\ the\ map\r\n
 comment4.params=obstacle\ base
 comment4.target=void\ drawMap(java.util.List,\ java.util.List)
 comment5.params=
